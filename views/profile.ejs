@@ -1,68 +1,56 @@
 <!doctype html>
 <html>
 <head>
-    <title>21 Savage Fan Site</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-    <link rel="stylesheet" href="style.css">
+  <title>Interview Prep Hub</title>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/style.css">
 </head>
-<body>
-<div class="container">
-
-    <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
-        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+<body class="profile-body">
+  <header class="hub-header">
+    <h1>Interview Prep Hub</h1>
+    <div class="user-info">
+      <span class="user-email"><%= user.local.email %></span>
+      <a href="/logout" class="btn btn-outline btn-sm">Logout</a>
     </div>
+  </header>
 
-    <div class="row">
+  <main class="hub-main container">
+    <section class="intro">
+      <h2>Welcome back!</h2>
+      <p>Post a question, share your practice answers, or react to others’ posts. Support your peers and level up your interview skills.</p>
+    </section>
 
-        <!-- LOCAL INFORMATION -->
-        <div class="col-sm-6">
-            <div class="well">
-                <h3><span class="fa fa-user"></span> Local</h3>
-
-                <% if (user.local.email) { %>
-                    <p>
-                        <strong>id</strong>: <%= user._id %><br>
-                        <strong>email</strong>: <%= user.local.email %><br>
-                        <strong>password</strong>: <%= user.local.password %>
-                    </p>
-
-                    <a href="/unlink/local" class="btn btn-default">Unlink</a>
-                <% } else { %>
-                    <a href="/connect/local" class="btn btn-default">Connect Local</a>
-                <% } %>
-
+    <section class="messages-board">
+      <h3>Community Board</h3>
+      <ul class="messages-list">
+        <% for (var i = 0; i < messages.length; i++) { %>
+          <li class="message-card">
+            <div class="message-header">
+              <strong><%= messages[i].name %></strong>
             </div>
-        </div>
-        <div class="col-sm-6">
-          <h3>Messages</h3>
-          <ul class="messages">
-          <% for(var i=0; i<messages.length; i++) {%>
-            <li class="message">
-              <span><%= messages[i].name %></span>
-              <span><%= messages[i].msg %></span>
-              <span><%= messages[i].thumbUp %></span>
-              <span><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
-              <span><i class="fa fa-thumbs-down" aria-hidden="true"></i></span>
-              <span><i class="fa fa-trash" aria-hidden="true"></i></span>
-            </li>
-          <% } %>
-          </ul>
-
-          <h2>Add a message</h2>
-        <% if (user.local.email) { %>
-          <form action="/messages" method="POST">
-            <input type="text" value="<%= user.local.email %>" name="name">
-            <input type="text" placeholder="message" name="msg">
-            <button type="submit">Submit</button>
-          </form>
-        </div>
+            <p class="message-body"><%= messages[i].msg %></p>
+            <div class="message-actions">
+              <span class="thumb-count"><%= messages[i].thumbUp %></span>
+              <i class="fa fa-thumbs-up"></i>
+              <i class="fa fa-thumbs-down"></i>
+              <i class="fa fa-trash"></i>
+            </div>
+          </li>
         <% } %>
+      </ul>
+    </section>
 
-</div>
+    <section class="add-message">
+      <h3>Share a Question or Answer</h3>
+      <form action="/messages" method="POST" class="message-form">
+        <input type="text" name="name" value="<%= user.local.email %>" readonly>
+        <textarea name="msg" placeholder="Share a practice question, or write your CAR answer..."></textarea>
+        <button type="submit" class="btn btn-primary">Post</button>
+      </form>
+    </section>
+  </main>
 
-<script src="main.js"></script>
-
+  <script src="/main.js"></script>
 </body>
 </html>
