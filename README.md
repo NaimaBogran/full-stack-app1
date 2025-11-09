@@ -14,12 +14,9 @@ Build communication confidence in a peer-driven community
 
 It’s a supportive space to refine behavioral, technical, and system-design interview skills while connecting with others on the same journey.
 This project emphasizes responsive design, real-time collaboration concepts, and clean UI/UX principles.
-**🎮 Live Demo:** [https://bodydouble.netlify.app/](https://bodydouble.netlify.app/)
+
 
 ---
-
-<img width="1719" height="812" alt="image" src="img/readME-img.png" />
-
 
 ## ✨ Features
 
