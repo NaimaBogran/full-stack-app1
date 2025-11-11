@@ -16,7 +16,7 @@ It’s a supportive space to refine behavioral, technical, and system-design int
 This project emphasizes responsive design, real-time collaboration concepts, and clean UI/UX principles.
 
 
-<img width="1719" height="812" alt="image" src="img/readme-img.png" />
+<img width="1719" height="812" alt="image" src="views/img/readme-img.png" />
 
 ---
 
