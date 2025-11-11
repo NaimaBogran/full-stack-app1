@@ -40,7 +40,14 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
 // database + routes + launch ==================================================
-mongoose.connect(configDB.url)
+const mongoURI = process.env.MONGODB_URI;
+
+if (!mongoURI) {
+  console.error('MONGODB_URI is not set.');
+  process.exit(1);
+}
+
+mongoose.connect(mongoURI)
   .then(() => {
     console.log('Connected to MongoDB');
 
@@ -61,3 +68,4 @@ mongoose.connect(configDB.url)
   .catch(err => {
     console.error('MongoDB connection error:', err);
   });
+
